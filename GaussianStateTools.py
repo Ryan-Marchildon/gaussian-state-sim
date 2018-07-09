@@ -2,7 +2,7 @@
 Arbitrary Gaussian State Evolution Toolkit v1.4
 Created by Ryan P. Marchildon 2017/09/30
 
-Last updated on 2018/15/07
+Last updated on 2018/07/09
 
 Follows the recipes outlined in:
 (1) Stefano Olivares, "Quantum optics in the phase space", ArXiv:1111.0786v2 (2011)
