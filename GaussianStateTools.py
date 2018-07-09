@@ -31,7 +31,6 @@ class GaussianState:
 
         :attrib R_vec: 1-by-2n array, n-mode first-moments vector
                        (<q1>, <p1>, ..., <qn>, <pn>)^T
-
         :attrib sigma: 2n-by-2n array, n-mode covariance matrix.
         
         Note: we use the convention X = (a + adag)/sqrt(2), p = (a - adag)/isqrt(2),
@@ -61,7 +60,7 @@ class GaussianState:
         """
         Creates a new object that is a duplicate of the state.
 
-        Necessary because psi_new = psi merely creates a pointer, and if psi gets modified,
+        Note: Necessary because psi_new = psi merely creates a pointer, and if psi gets modified,
         psi_new will be modified likewise.
 
         :return: psi_new, a new object that is a copy of this state.
@@ -78,9 +77,7 @@ class GaussianState:
 
         :param mode_id: int, The mode we are displacing (note: mode_id for first mode is 1,
                         mode_id for second mode is 2)
-
         :param alpha_mag: float, Magnitude of the displacement.
-
         :param alpha_phase: float, Phase of the displacement in radians. (e.g. np.pi)
 
         :return: self: object
@@ -103,7 +100,6 @@ class GaussianState:
         Applies a phase rotation to the specified mode. 
 
         :param mode_id: int, the mode we are squeezing. 
-
         :param phase: float, rotation phase.
 
         :return self: object
@@ -150,7 +146,6 @@ class GaussianState:
         transformations to the mean vector and covariance matrix.
 
         :param mode_id: int, the mode we are dissipating.
-
         :param transmission: float, effective power transmission of optical element (e.g. efficiency).
 
         :return self: object
@@ -220,9 +215,7 @@ class GaussianState:
         Applies a single-mode squeezing operation on the specified mode
 
         :param mode_id: int, the mode we are squeezing. 
-
         :param beta_mag: float, squeezing magnitude (equal to r, the squeezing parameter).
-
         :param beta_phase: float, squeezing phase.
         
         :return self: object
@@ -267,11 +260,8 @@ class GaussianState:
         Mode index counting begins at 1. 
 
         :param mode_1_id: int, the index of the first mode involved in the two-mode squeezing.
-
         :param mode_2_id: int, the index of the second mode involved in the two-mode squeezing.
-
         :param beta_mag: float, squeezing magnitude (equal to r, the squeezing parameter).
-
         :param beta_phase: float, squeezing phase.
 
         :return self: object
@@ -321,11 +311,8 @@ class GaussianState:
         The complex mixing amplitude is  arcsin(sqrt(R0))exp(i*mixing_angle).
         
         :param mode_1_id: int, the first mode involved in the interaction, > 0. (numbering starts at 1)
-
         :param mode_2_id: int, the second mode involved in the interaction, > 0. (numbering starts at 1)
-
         :param R0: float, beamsplitter reflectivity
-
         :param mixing_angle: float, given in radians, where pi/2 is for a beamsplitter
 
         :return self: object
@@ -398,19 +385,13 @@ class OneModeGaussianWignerFunction:
         Numerically computes the Wigner function of a one-mode state, and returns this as an object.  
 
         :param state: object of class GaussianState()
-
         :param range_min: start of quadrature calculation range
-
         :param range_max: end of quadrature calculation range
-
         :param range_num_steps: number of calculation steps along each dimension
 
         :attrib values:  2N-dimensional array containing the Wigner function evaluated at a grid of points 
-
         :attrib spacing: float, the sampling spacing (stepsize, dx) between grid points
-
         :attrib x_mesh: 2N-dimensional meshgrid array containing the x-coordinates the wigner function was evaluated at
-
         :attrib p_mesh: 2N-dimensional meshgrid array containing the p-coordinates the wigner function was evaluated at
 
         """
@@ -479,23 +460,15 @@ class TwoModeGaussianWignerFunction:
         Numerically computes the Wigner function of a two-mode state, and returns this as an object. 
     
         :param state: object of class GaussianState()
-
         :param range_min: start of quadrature calculation range
-
         :param range_max: end of quadrature calculation range
-
         :param range_num_steps: number of calculation steps along each dimension
     
         :attrib values: 2N-dimensional array, the Wigner function evaluated at a grid of points
-
         :attrib spacing: float, the sampling spacing (stepsize, dx) between grid points
-
         :attrib x1_mesh: 2N-dimensional meshgrid array of x1-coordinates sampling the wigner function
-
         :attrib p1_mesh: 2N-dimensional meshgrid array of p1-coordinates sampling the wigner function
-
         :attrib x2_mesh: 2N-dimensional meshgrid array of x2-coordinates sampling the wigner function
-
         :attrib p2_mesh: 2N-dimensional meshgrid array of p2-coordinates sampling the wigner function
     
         """
@@ -542,9 +515,7 @@ class TwoModeGaussianWignerFunction:
         Generates a countour plot of a 2-mode Wigner function along the specified axes. 
 
         :param self: object of class TwoModeGaussianWignerFunction().
-
         :param axis_1: specified plotting axis 1 (options are 'x1', 'p1', 'x2', or 'p2')
-
         :param axis_2: specified plotting axis 1 (options are 'x1', 'p1', 'x2', or 'p2')
 
         :return: none
@@ -705,7 +676,6 @@ def WignerOverlap(wigner_state_1, wigner_state_2):
     Computes the overlap between two N-mode Wigner functions. 
     
     :param wigner_state_1: object of class [N]ModeGaussianWignerFunction() for state 1
-
     :param wigner_state_2: object of class [N]ModeGaussianWignerFunction() for state 2
     
     :return: float, overlap factor between the two wigner functions
@@ -735,7 +705,6 @@ def OneModeFidelity(state_1, state_2):
     Returns the Uhlmann's fidelity of two single-mode Gaussian states.
     
     :param state_1: object of class GuassianState()
-
     :param state_2: object of class GaussianState()
     
     :return: Uhlmann's fidelity
@@ -769,7 +738,6 @@ def TwoModeFidelity(state_1, state_2):
     Returns the Uhlmann's fidelity of two 2-mode Gaussian states.
 
     :param state_1: object of class GuassianState()
-
     :param state_2: object of class GaussianState()
 
     :return: Uhlmann's fidelity
@@ -815,7 +783,6 @@ def delete_mode(psi_, deleted_mode_id=3):
     TODO: Generalize to N modes.
 
     :param psi_: object of class GaussianState() for which we want to 'delete' a mode.
-
     :param deleted_mode_id: mode we want to 'delete' (surrogate for trace)
 
     :return psi_new: object of class GaussianState() with the desired mode deleted
