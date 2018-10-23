@@ -36,7 +36,7 @@ wigner_1.plot()
 ```
 
 Documentation of the library's objects, methods, and functions are found within **GaussianStateTools.py**. 
-For a more thorough example of how to use the library, see **Example.py**. 
+For a more thorough example of how to use the library, see **Example.py**. You can also view a demo on my website [here](http://rpmarchildon.com/python-toolkit-for-gaussian-state-evolution/).
 
 This code has been written and tested for Gaussian states up to N=3 modes. Some present limitations and
 room for community contributions:
